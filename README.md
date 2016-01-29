@@ -8,16 +8,21 @@ current memory metrics of host EC2 instance to CloudWatch.
 ## Usage ##
 ### `docker-cloudwatch.service`
     [Unit]
-    Description=someapp cloudwatch stats
+    Description=Run cloudwatch-stats
     After=docker.service
     Requires=docker.service
 
     [Service]
-    TimeoutStartSec=0
-    ExecStartPre=-/usr/bin/docker kill cloudwatch-stats
+    Type=oneshot
+    KillMode=none
+    Restart=no
+    ExecStartPre=-/usr/bin/docker stop cloudwatch-stats
     ExecStartPre=-/usr/bin/docker rm cloudwatch-stats
     ExecStartPre=-/usr/bin/docker pull quay.io/tinfoil/cloudwatch-stats
-    ExecStart=/usr/bin/docker run quay.io/tinfoil/cloudwatch-stats
+    ExecStart=/usr/bin/docker run \
+    --rm \
+    --name cloudwatch-stats \
+    quay.io/tinfoil/cloudwatch-stats
 
 ### `docker-cloudwatch.timer`
     [Unit]
