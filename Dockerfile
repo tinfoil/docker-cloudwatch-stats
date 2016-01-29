@@ -1,10 +1,18 @@
-FROM gliderlabs/alpine:3.2
+FROM gliderlabs/alpine:3.3
 
-RUN apk --update add coreutils py-pip git && pip install git+https://github.com/pebble/cloudwatch-mon-scripts-python.git@master
+RUN apk --update add wget perl-datetime perl-lwp-protocol-https perl-digest-sha1
 
-CMD sed '1d' -i /etc/mtab && /usr/bin/mon-put-instance-stats.py \
+ENV CLOUDWATCH_MONITORING_VERSION=1.2.1
+
+RUN wget --quiet http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-$CLOUDWATCH_MONITORING_VERSION.zip && \
+    unzip CloudWatchMonitoringScripts-$CLOUDWATCH_MONITORING_VERSION.zip && \
+    rm CloudWatchMonitoringScripts-$CLOUDWATCH_MONITORING_VERSION.zip
+
+WORKDIR aws-scripts-mon
+
+CMD ./mon-put-instance-data.pl \
     --mem-util \
-    --disk-space-util \
-    --disk-path=/ \
-    --auto-scaling \
-    --auto-scaling-group=$ASG
+    --mem-used \
+    --mem-avail \
+    --swap-util \
+    --swap-used
