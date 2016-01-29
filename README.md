@@ -1,5 +1,7 @@
 # Docker CloudWatch Stats #
 
+[![Docker Repository on Quay](https://quay.io/repository/tinfoil/cloudwatch-stats/status?token=743704ca-63ae-4427-9a50-43e691785a92 "Docker Repository on Quay")](https://quay.io/repository/tinfoil/cloudwatch-stats)
+
 Standalone container intended to be run via cron/systemd.timer that reports
 current memory metrics of host EC2 instance to CloudWatch.
 
