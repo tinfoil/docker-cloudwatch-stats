@@ -8,11 +8,6 @@ RUN wget --quiet http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMoni
     unzip CloudWatchMonitoringScripts-$CLOUDWATCH_MONITORING_VERSION.zip && \
     rm CloudWatchMonitoringScripts-$CLOUDWATCH_MONITORING_VERSION.zip
 
-WORKDIR aws-scripts-mon
+WORKDIR /aws-scripts-mon
 
-CMD ./mon-put-instance-data.pl \
-    --mem-util \
-    --mem-used \
-    --mem-avail \
-    --swap-util \
-    --swap-used
+CMD ["./mon-put-instance-data.pl", "--mem-util", "--mem-used", "--mem-avail", "--swap-util", "--swap-used"]
