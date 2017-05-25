@@ -35,5 +35,6 @@ current memory metrics of host EC2 instance to CloudWatch.
     WantedBy=timers.target
 
 ## Credits & Inspiration
+* http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html
 * https://github.com/pebble/docker-cloudwatch-stats
 * https://github.com/athieriot/docker-cloudwatch-monitor
