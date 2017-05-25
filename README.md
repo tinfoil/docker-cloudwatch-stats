@@ -18,7 +18,6 @@ current memory metrics of host EC2 instance to CloudWatch.
     Restart=no
     ExecStartPre=-/usr/bin/docker stop cloudwatch-stats
     ExecStartPre=-/usr/bin/docker rm cloudwatch-stats
-    ExecStartPre=-/usr/bin/docker pull quay.io/tinfoil/cloudwatch-stats
     ExecStart=/usr/bin/docker run \
     --rm \
     --name cloudwatch-stats \
