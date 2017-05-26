@@ -18,7 +18,6 @@ current memory metrics of host EC2 instance to CloudWatch.
     Restart=no
     ExecStartPre=-/usr/bin/docker stop cloudwatch-stats
     ExecStartPre=-/usr/bin/docker rm cloudwatch-stats
-    ExecStartPre=-/usr/bin/docker pull quay.io/tinfoil/cloudwatch-stats
     ExecStart=/usr/bin/docker run \
     --rm \
     --name cloudwatch-stats \
@@ -36,5 +35,6 @@ current memory metrics of host EC2 instance to CloudWatch.
     WantedBy=timers.target
 
 ## Credits & Inspiration
+* http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html
 * https://github.com/pebble/docker-cloudwatch-stats
 * https://github.com/athieriot/docker-cloudwatch-monitor
